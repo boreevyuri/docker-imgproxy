@@ -24,15 +24,15 @@ services:
     security_opt:
       - no-new-privileges:true
     volumes:
-      - ./www:/home:cached
+      - /www:/home:cached
       - ./cache:/var/cache/nginx/imgproxy:delegated
       - ./logs:/var/log/nginx:delegated
       - ./imgproxy.conf:/etc/nginx/nginx.d/imgproxy.conf
       - ./certs:/etc/nginx/certs
     ports:
-      - 80:80
-      - 443:443/tcp
-      - 443:443/udp
+      - 127.0.0.1:85:80
+      # - 443:443/tcp
+      # - 443:443/udp
     links:
       - imgproxy:imgproxy
     environment:
